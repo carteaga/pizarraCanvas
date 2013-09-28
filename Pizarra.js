@@ -141,7 +141,9 @@ Pizarra.prototype = {
     cargarDibujoGuardado: function () {
         var auxTrazos = JSON.parse(localStorage.getItem(this.id));
         if(auxTrazos) {
+            this.limpiarPizarra();
             this.trazos = auxTrazos;
+            
             // reproducior trazos
             for(var i = 0; i < this.trazos.length; i++) {
                 this.reproducirTrazo(this.trazos[i]);
