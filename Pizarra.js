@@ -86,7 +86,9 @@ Pizarra.prototype = {
 	},
 
 	limpiarPizarra: function () {
-		this.dibujaRectanguloInicial();
+        this.elemento.width = this.elemento.width;
+        this.dibujaRectanguloInicial();
+        this.trazos = [];
 	},
 
 	dibujaRectanguloInicial: function () {
