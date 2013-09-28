@@ -1,5 +1,4 @@
 var Punto = function (x, y) {
-	console.log('asdsad')
 	this.x = x;
 	this.y = y;
 }
