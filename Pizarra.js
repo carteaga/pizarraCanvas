@@ -139,7 +139,8 @@ Pizarra.prototype = {
     },
     
     cargarDibujoGuardado: function () {
-        var auxTrazos = JSON.parse(localStorage.getItem(this.id));
+        var auxTrazos = JSON.parse(localStorage.getItem(this.id)),
+        	auxColor = this.colorLapiz;
         if(auxTrazos) {
             this.limpiarPizarra();
             this.trazos = auxTrazos;
@@ -148,6 +149,9 @@ Pizarra.prototype = {
             for(var i = 0; i < this.trazos.length; i++) {
                 this.reproducirTrazo(this.trazos[i]);
             }
+
+            // devuelve el color del lapiz seleccionado
+            this.setColorLapiz(auxColor);
         }
     },
     
