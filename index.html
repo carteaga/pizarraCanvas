@@ -17,19 +17,21 @@
 </head>
 <body>
 	<button id="limpiarPizarra">Limpiar pizarra</button>
+    <button id="guardarPizarra">Guardar</button>
+    <button id="cargarDibujoGuardado">Cargar dibujo</button>
 	Color seleccionado: <div id="colorSeleccionado"></div><br />
 	<button class="btn-color" style="color: #FF0000">Rojo</button>
 	<button class="btn-color" style="color: #FFFFFF">Blanco</button>
 	<button class="btn-color" style="color: #FFFF00">Amarrillo</button>
 	<button class="btn-color" style="color: #38610B">Verde</button>
 	<br />
-	<canvas id="pizarra" width="600" height="500">
+	<canvas id="pizarra" width="900" height="500">
 		Tu navegador no es compatible con la técnologia canvas.
 	</canvas>
 
 	<script type="text/javascript">
 		var pizarra, btnLimpiarPizarra, btnColorLapiz, btnColores,
-			dvColorSeleccionado;
+			dvColorSeleccionado, btnGuardarPizarra, btnCargarDibujoGuardado;
 		window.onload = function () {
 			pizarra = new Pizarra({
 				id: 'pizarra'
@@ -53,6 +55,24 @@
 					}
 				}
 			}
+            
+            // guarda la pizarra
+            btnGuardarPizarra = document.getElementById('guardarPizarra');
+            btnGuardarPizarra.onclick = function () {
+                pizarra.guardarDibujo();
+                btnGuardarPizarra.style.display = 'inline-block';
+            }
+            
+            btnGuardarPizarra = document.getElementById('cargarDibujoGuardado');
+            btnGuardarPizarra.onclick = function () {
+                pizarra.cargarDibujoGuardado();
+            }
+            
+            if(pizarra.existeDibujoGuardado()) {
+                btnGuardarPizarra.style.display = 'inline-block';
+            } else {
+                btnGuardarPizarra.style.display = 'none';
+            }
 		}
 	</script>
 </body>

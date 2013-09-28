@@ -9,8 +9,6 @@ var Trazo = function (puntos, color) {
 } 
 
 Trazo.prototype = {
-	color: null,
-
 	agregarPunto: function (punto) {
 		this.puntos.push(punto);
 	}
@@ -130,5 +128,26 @@ Pizarra.prototype = {
 
 	exportarTrazos: function () {
 		return JSON.stringify(this.trazos);
-	}
+	},
+    
+    guardarDibujo: function () {
+        if(localStorage) {
+            localStorage.setItem(this.id, this.exportarTrazos(this.trazos));
+        }
+    },
+    
+    cargarDibujoGuardado: function () {
+        var auxTrazos = JSON.parse(localStorage.getItem(this.id));
+        if(auxTrazos) {
+            this.trazos = auxTrazos;
+            // reproducior trazos
+            for(var i = 0; i < this.trazos.length; i++) {
+                this.reproducirTrazo(this.trazos[i]);
+            }
+        }
+    },
+    
+    existeDibujoGuardado: function () {
+        return localStorage[this.id];
+    }
 }
