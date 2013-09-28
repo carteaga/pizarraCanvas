@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title></title>
+	<script type="text/javascript" src="Pizarra.js"></script>
+	<style>
+		#colorSeleccionado {
+			border: 1px solid black;
+			display: inline-block;
+			height: 13px;
+			width: 100px;
+		}
+		#pizarra:active {
+			cursor: crosshair;
+		}
+	</style>
+</head>
+<body>
+	<button id="limpiarPizarra">Limpiar pizarra</button>
+	Color seleccionado: <div id="colorSeleccionado"></div><br />
+	<button class="btn-color" style="color: #FF0000">Rojo</button>
+	<button class="btn-color" style="color: #FFFFFF">Blanco</button>
+	<button class="btn-color" style="color: #FFFF00">Amarrillo</button>
+	<button class="btn-color" style="color: #38610B">Verde</button>
+	<br />
+	<canvas id="pizarra" width="600" height="500">
+		Tu navegador no es compatible con la técnologia canvas.
+	</canvas>
+
+	<script type="text/javascript">
+		var pizarra, btnLimpiarPizarra, btnColorLapiz, btnColores,
+			dvColorSeleccionado;
+		window.onload = function () {
+			pizarra = new Pizarra({
+				id: 'pizarra'
+			});
+			pizarra.render();
+			btnLimpiarPizarra = document.getElementById('limpiarPizarra');
+			dvColorSeleccionado = document.getElementById('colorSeleccionado');
+			btnLimpiarPizarra.onclick = function () {
+				pizarra.limpiarPizarra();
+				dvColorSeleccionado.style.backgroundColor = pizarra.colorLapiz;
+			}
+			btnColores = document.getElementsByClassName('btn-color');
+			var length = (btnColores) ? btnColores.length : 0;
+			if(length) {
+
+				// asigna eventos automaticamente
+				for(var i = 0; i < length; i++) {
+					btnColores[i].onclick = function () {
+						pizarra.setColorLapiz(this.style.color);
+						dvColorSeleccionado.style.backgroundColor = this.style.color;
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>
