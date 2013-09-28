@@ -126,5 +126,9 @@ Pizarra.prototype = {
 			this.dibujarTrazo(puntos[i]);
 		}
 		this.dejarDeDibujar();
+	},
+
+	exportarTrazos: function () {
+		return JSON.stringify(this.trazos);
 	}
 }
